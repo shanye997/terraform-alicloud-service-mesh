@@ -8,12 +8,14 @@ data "alicloud_zones" "default" {
 
 module "vpc" {
   source             = "alibaba/vpc/alicloud"
+  version            = "~> 1.11.0"
+
   create             = true
   vpc_name           = "tf-test-service-mesh"
   vpc_cidr           = "172.16.0.0/16"
   vswitch_name       = "tf-test-service-mesh"
   vswitch_cidrs      = ["172.16.0.0/21"]
-  availability_zones = [data.alicloud_zones.default.zones.0.id]
+  availability_zones = [data.alicloud_zones.default.zones[0].id]
 }
 
 resource "random_integer" "default" {
@@ -37,7 +39,7 @@ module "example" {
   name                    = var.name
   vpc_id                  = module.vpc.this_vpc_id
   vswitche_ids            = [module.vpc.this_vswitch_ids[0]]
-  service_mesh_version    = reverse(data.alicloud_service_mesh_versions.default.versions).0.version
+  service_mesh_version    = reverse(data.alicloud_service_mesh_versions.default.versions)[0].version
   edition                 = var.edition
   force                   = var.force
   customized_zipkin       = var.customized_zipkin

@@ -20,7 +20,7 @@ variable "force" {
 variable "customized_zipkin" {
   description = "Whether or not to enable the use of a custom zipkin."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "enable_locality_lb" {
@@ -45,15 +45,6 @@ variable "access_log" {
   description = "The configuration of the access logging."
   type        = map(string)
   default     = {}
-}
-
-variable "audit" {
-  description = "The configuration of the audit."
-  type        = map(string)
-  default     = {
-    
-
-  }
 }
 
 variable "kiali" {

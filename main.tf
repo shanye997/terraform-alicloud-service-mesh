@@ -23,7 +23,7 @@ resource "alicloud_service_mesh_service_mesh" "mesh" {
       enabled = lookup(var.access_log, "enabled", false)
     }
     audit {
-      enabled = lookup(var.audit, "enabled",null)
+      enabled = lookup(var.audit, "enabled", null)
       project = lookup(var.audit, "project", null)
     }
     kiali {
